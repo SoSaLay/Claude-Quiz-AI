@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const axios = require('axios');
@@ -9,6 +10,13 @@ app.use(bodyParser.json());
 
 const PORT = process.env.PORT || 3001;
 
+// Serve static files from the build folder
+app.use(express.static(path.join(__dirname, 'build')));
+
+// Route to serve the index.html file
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.post('/generate-quiz', async (req, res) => {
 
