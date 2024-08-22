@@ -53,7 +53,7 @@ const  QuizGeneration = () => {
 
         //fetch to send a request to server, server expects data about quiz
         try {
-            const response = await fetch('http://localhost:3001/generate-quiz', {
+            const response = await fetch('/generate-quiz', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ numQuestions: questionCount, topic, difficulty, style }),
@@ -86,7 +86,7 @@ const  QuizGeneration = () => {
         if (answerSubmitted) return; // Prevent multiple submissions
         setIsLoading(true);
         try {
-            const response = await fetch('http://localhost:3001/evaluate-answer', {
+            const response = await fetch('/evaluate-answer', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 // text of the current question & answer, coverted into JSON string
